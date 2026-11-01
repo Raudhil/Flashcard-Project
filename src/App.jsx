@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowDownToLine, ArrowLeft, ArrowRight, BookOpen, Check, CheckCheck, ChevronDown, Code2, Copy, FileJson, FolderOpen, Globe2, GraduationCap, Layers, Lightbulb, Moon, Plus, Search, Sparkles, Sun, Trash2, Upload, X, Zap, Pencil } from 'lucide-react';
-import { seedDecks } from './data.js';
+import { localData, seedDecks, withBuiltinDecks } from './data.js';
 import { downloadJSON, exportDeck, JSON_EXAMPLE, parseCards, parseDeck, stats, uid } from './lib.js';
 import Study from './Study.jsx';
 
@@ -16,7 +16,7 @@ function loadData() {
         if (typeof deck.id !== 'string' || typeof deck.name !== 'string' || !Array.isArray(deck.parts)) throw new Error();
         for (const part of deck.parts) if (typeof part.id !== 'string' || typeof part.name !== 'string' || !Array.isArray(part.cards) || part.cards.some(c => typeof c.id !== 'string' || typeof c.front !== 'string' || typeof c.back !== 'string')) throw new Error();
       }
-      return data;
+      return withBuiltinDecks(data);
     }
   } catch { return { decks: seedDecks(), progress: {}, storageError: true }; }
   return { decks: seedDecks(), progress: {} };
@@ -52,7 +52,7 @@ export default function App() {
   const saveBlocked = useRef(Boolean(data.storageError));
   useEffect(() => {
     if (saveBlocked.current) return;
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); setStorageError(''); }
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(localData(data))); setStorageError(''); }
     catch { setStorageError('Penyimpanan browser penuh atau tidak tersedia. Ekspor deck Anda agar perubahan tidak hilang.'); }
   }, [data]);
   useEffect(() => {
@@ -66,9 +66,10 @@ export default function App() {
   const part = deck?.parts.find(p => p.id === page.partId);
   const allCards = data.decks.flatMap(d => d.parts.flatMap(p => p.cards));
   const totalStats = stats(allCards, data.progress);
-  function updateDeck(next) { setData(old => ({ ...old, decks: old.decks.map(d => d.id === next.id ? next : d) })); }
+  function updateDeck(next) { setData(old => ({ ...old, decks: old.decks.map(d => d.id === next.id && !d.builtin ? next : d) })); }
   function goHome() { setPage({ view: 'home' }); }
   function deleteDeck(target) {
+    if (target.builtin) return;
     setModal({ type: 'confirm', title: 'Hapus deck ini?', text: `Deck “${target.name}” beserta semua part, kartu, dan progresnya akan dihapus dari browser ini.`, action: () => {
       const ids = new Set(target.parts.flatMap(p => p.cards.map(c => c.id)));
       setData(old => ({ ...old, decks: old.decks.filter(d => d.id !== target.id), progress: Object.fromEntries(Object.entries(old.progress).filter(([id]) => !ids.has(id))) })); goHome(); setToast('Deck berhasil dihapus.');
@@ -124,12 +125,55 @@ function Summary({ icon: Icon, value, label, color }) { return <div className="s
 
 function DeckCard({ deck, progress, open }) {
   const s = stats(deck.parts.flatMap(p => p.cards), progress);
-  return <button className={`deck-card color-${deck.color}`} onClick={open}><div className="deck-card-top"><span className="deck-icon"><DeckIcon color={deck.color} size={27} /></span><span className="deck-kind">{deck.color === 'pink' ? 'BAHASA' : deck.color === 'mint' ? 'BAHASA' : deck.color === 'purple' ? 'PENGETAHUAN' : 'KOLEKSI'}</span><span className="deck-open"><ArrowRight size={19} /></span></div><div className="deck-card-content"><h3>{deck.name}</h3><p>{deck.description || 'Satu langkah lebih dekat dengan hal baru.'}</p><div className="deck-meta"><span><Layers size={14} /> {deck.parts.length} part</span><span className="meta-dot">·</span><span><BookOpen size={14} /> {s.total} kartu</span></div></div><div className="deck-progress"><div><span>Progres belajar</span><strong>{s.percent}%</strong></div><div className="progress-track"><span style={{ width: `${s.percent}%` }} /></div><span className="progress-caption">{s.mastered} dari {s.total} kartu dikuasai</span></div></button>;
+  return <button className={`deck-card color-${deck.color}`} onClick={open}><div className="deck-card-top"><span className="deck-icon"><DeckIcon color={deck.color} size={27} /></span><span className="deck-kind">{deck.builtin ? 'MATERI BAWAAN' : deck.color === 'pink' ? 'BAHASA' : deck.color === 'mint' ? 'BAHASA' : deck.color === 'purple' ? 'PENGETAHUAN' : 'KOLEKSI'}</span><span className="deck-open"><ArrowRight size={19} /></span></div><div className="deck-card-content"><h3>{deck.name}</h3><p>{deck.description || 'Satu langkah lebih dekat dengan hal baru.'}</p><div className="deck-meta"><span><Layers size={14} /> {deck.parts.length} part</span><span className="meta-dot">·</span><span><BookOpen size={14} /> {s.total} kartu</span></div></div><div className="deck-progress"><div><span>Progres belajar</span><strong>{s.percent}%</strong></div><div className="progress-track"><span style={{ width: `${s.percent}%` }} /></div><span className="progress-caption">{s.mastered} dari {s.total} kartu dikuasai</span></div></button>;
 }
 
-function DeckView({ deck, progress, back, study, addPart, editPart, editDeck, deleteDeck, deletePart, notify }) {
+export function DeckView({ deck, progress, back, study, addPart, editPart, editDeck, deleteDeck, deletePart, notify }) {
   const s = stats(deck.parts.flatMap(p => p.cards), progress);
-  return <div className="inner-page"><button className="back-link" onClick={back}><ArrowLeft size={16} /> Kembali ke deck saya</button><section className={`deck-banner color-${deck.color}`}><div className="deck-banner-main"><span className="deck-icon big"><DeckIcon color={deck.color} size={34} /></span><div><span className="eyebrow">KOLEKSI BELAJARMU</span><h1>{deck.name}</h1><p>{deck.description || 'Setiap kartu adalah langkah kecil untuk belajar.'}</p></div></div><div className="deck-banner-actions"><button className="icon-button" onClick={editDeck} title="Edit deck" aria-label="Edit deck"><Pencil size={18} /></button><button className="icon-button" onClick={() => { downloadJSON(exportDeck(deck), `${deck.name}.json`); notify('Deck diekspor. Simpan file JSON sebagai cadangan.'); }} title="Ekspor deck" aria-label="Ekspor deck"><ArrowDownToLine size={18} /></button><button className="icon-button" onClick={deleteDeck} title="Hapus deck" aria-label="Hapus deck"><Trash2 size={18} /></button></div></section><section className="overview-grid compact"><Summary icon={Layers} value={deck.parts.length} label="Part belajar" color="purple" /><Summary icon={BookOpen} value={s.total} label="Total kartu" color="pink" /><Summary icon={CheckCheck} value={s.mastered} label="Dikuasai" color="mint" /><Summary icon={Zap} value={`${s.percent}%`} label="Progres deck" color="yellow" /></section><div className="section-heading"><div><h2>Selangkah demi selangkah.</h2><p>Pilih part untuk mulai belajar atau tambahkan kartu baru.</p></div><button className="button primary" onClick={addPart}><Plus size={17} /> Tambah part</button></div><div className="parts-list">{deck.parts.map((p, index) => { const ps = stats(p.cards, progress); return <article className="part-row" key={p.id}><span className={`part-number color-${deck.color}`}>{String(index + 1).padStart(2, '0')}</span><div className="part-info"><h3>{p.name}</h3><span>{p.cards.length} kartu <span>·</span> {ps.mastered} dikuasai</span></div><div className="part-progress"><span>{ps.percent}%</span><div className="progress-track"><span style={{ width: `${ps.percent}%` }} /></div></div><div className="part-actions"><button className="icon-button" aria-label={`Edit ${p.name}`} onClick={() => editPart(p)}><Pencil size={16} /></button><button className="icon-button" aria-label={`Hapus ${p.name}`} onClick={() => deletePart(p)}><Trash2 size={16} /></button><button className="button study-button" onClick={() => study(p.id)}>Belajar <ArrowRight size={16} /></button></div></article>; })}{!deck.parts.length && <div className="empty-state"><span className="empty-icon color-yellow"><Layers size={35} /></span><h2>Deck baru, kemungkinan baru.</h2><p>Tambahkan part pertamamu dengan mengimpor kartu dari JSON.</p><button className="button primary" onClick={addPart}><Plus size={17} /> Buat part pertama</button></div>}</div><div className="help-line"><FileJson size={16} /> Setiap part berisi kumpulan flashcard dari JSON. Susun berdasarkan topik, bab, atau tingkat kesulitan.</div></div>;
+  return <div className="inner-page">
+    <button className="back-link" onClick={back}><ArrowLeft size={16} /> Kembali ke deck saya</button>
+    <section className={`deck-banner color-${deck.color}`}>
+      <div className="deck-banner-main">
+        <span className="deck-icon big"><DeckIcon color={deck.color} size={34} /></span>
+        <div>
+          <span className="eyebrow">{deck.builtin ? 'MATERI BAWAAN · TERSEDIA DI SEMUA PERANGKAT' : 'KOLEKSI BELAJARMU'}</span>
+          <h1>{deck.name}</h1>
+          <p>{deck.description || 'Setiap kartu adalah langkah kecil untuk belajar.'}</p>
+        </div>
+      </div>
+      <div className="deck-banner-actions">
+        {!deck.builtin && <button className="icon-button" onClick={editDeck} title="Edit deck" aria-label="Edit deck"><Pencil size={18} /></button>}
+        <button className="icon-button" onClick={() => { downloadJSON(exportDeck(deck), `${deck.name}.json`); notify('Deck diekspor. Simpan file JSON sebagai cadangan.'); }} title="Ekspor deck" aria-label="Ekspor deck"><ArrowDownToLine size={18} /></button>
+        {!deck.builtin && <button className="icon-button" onClick={deleteDeck} title="Hapus deck" aria-label="Hapus deck"><Trash2 size={18} /></button>}
+      </div>
+    </section>
+    <section className="overview-grid compact">
+      <Summary icon={Layers} value={deck.parts.length} label="Part belajar" color="purple" />
+      <Summary icon={BookOpen} value={s.total} label="Total kartu" color="pink" />
+      <Summary icon={CheckCheck} value={s.mastered} label="Dikuasai" color="mint" />
+      <Summary icon={Zap} value={`${s.percent}%`} label="Progres deck" color="yellow" />
+    </section>
+    <div className="section-heading">
+      <div><h2>Selangkah demi selangkah.</h2><p>{deck.builtin ? '13 part siap dipelajari. Pilih part dan mulai belajar.' : 'Pilih part untuk mulai belajar atau tambahkan kartu baru.'}</p></div>
+      {!deck.builtin && <button className="button primary" onClick={addPart}><Plus size={17} /> Tambah part</button>}
+    </div>
+    <div className="parts-list">{deck.parts.map((p, index) => {
+      const ps = stats(p.cards, progress);
+      return <article className="part-row" key={p.id}>
+        <span className={`part-number color-${deck.color}`}>{String(index + 1).padStart(2, '0')}</span>
+        <div className="part-info"><h3>{p.name}</h3><span>{p.cards.length} kartu <span>·</span> {ps.mastered} dikuasai</span></div>
+        <div className="part-progress"><span>{ps.percent}%</span><div className="progress-track"><span style={{ width: `${ps.percent}%` }} /></div></div>
+        <div className="part-actions">
+          {!deck.builtin && <>
+            <button className="icon-button" aria-label={`Edit ${p.name}`} onClick={() => editPart(p)}><Pencil size={16} /></button>
+            <button className="icon-button" aria-label={`Hapus ${p.name}`} onClick={() => deletePart(p)}><Trash2 size={16} /></button>
+          </>}
+          <button className="button study-button" onClick={() => study(p.id)}>Belajar <ArrowRight size={16} /></button>
+        </div>
+      </article>;
+    })}{!deck.parts.length && <div className="empty-state"><span className="empty-icon color-yellow"><Layers size={35} /></span><h2>Deck baru, kemungkinan baru.</h2><p>Tambahkan part pertamamu dengan mengimpor kartu dari JSON.</p><button className="button primary" onClick={addPart}><Plus size={17} /> Buat part pertama</button></div>}</div>
+    <div className="help-line"><FileJson size={16} /> {deck.builtin ? 'Materi bawaan sama di semua perangkat. Progres belajar dan deck pribadi tersimpan di browser masing-masing.' : 'Setiap part berisi kumpulan flashcard dari JSON. Susun berdasarkan topik, bab, atau tingkat kesulitan.'}</div>
+  </div>;
 }
 
 function DeckForm({ deck, close, save }) {

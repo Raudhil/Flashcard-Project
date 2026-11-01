@@ -4,25 +4,42 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { createServer } from 'vite';
 
-test('home renders seeded decks and restores an empty saved collection', async () => {
+test('home includes built-in materials for new and returning browsers, and study renders correctly', async () => {
   let saved = null;
   globalThis.document = { documentElement: { classList: { contains: () => false } } };
   globalThis.localStorage = { getItem: () => saved };
   const server = await createServer({ server: { middlewareMode: true }, appType: 'custom' });
   try {
-    const { default: App } = await server.ssrLoadModule('/src/App.jsx');
+    const { default: App, DeckView } = await server.ssrLoadModule('/src/App.jsx');
+    const { seedDecks } = await server.ssrLoadModule('/src/data.js');
     const initial = renderToStaticMarkup(React.createElement(App));
-    assert.match(initial, /Mandarin sehari-hari/);
-    assert.match(initial, /Everyday English/);
-    assert.match(initial, /Web development/);
+    assert.match(initial, /Mandarin — Materi 01–13/);
+    assert.match(initial, /236 kartu/);
+    assert.match(initial, /MATERI BAWAAN/);
     assert.match(initial, /Aktifkan mode gelap/);
     saved = JSON.stringify({ decks: [], progress: {} });
     const empty = renderToStaticMarkup(React.createElement(App));
-    assert.doesNotMatch(empty, /Mandarin sehari-hari/);
+    assert.match(empty, /Mandarin — Materi 01–13/);
     assert.match(empty, /Buat deck baru/);
+    saved = JSON.stringify({ decks: [{ id: 'personal', name: 'Koleksi pribadi lama', description: '', parts: [], color: 'mint' }], progress: {} });
+    const returning = renderToStaticMarkup(React.createElement(App));
+    assert.match(returning, /Mandarin — Materi 01–13/);
+    assert.match(returning, /Koleksi pribadi lama/);
     saved = '{invalid';
     const recovered = renderToStaticMarkup(React.createElement(App));
     assert.match(recovered, /Penyimpanan browser tidak dapat dibaca/);
+
+    const deckProps = { deck: seedDecks()[0], progress: {}, back: () => {}, study: () => {}, addPart: () => {}, editPart: () => {}, editDeck: () => {}, deleteDeck: () => {}, deletePart: () => {}, notify: () => {} };
+    const builtinView = renderToStaticMarkup(React.createElement(DeckView, deckProps));
+    assert.match(builtinView, /Part 01/);
+    assert.match(builtinView, /Part 13/);
+    assert.match(builtinView, /Ekspor deck/);
+    assert.equal((builtinView.match(/>Belajar /g) || []).length, 13);
+    assert.doesNotMatch(builtinView, /aria-label="Edit |aria-label="Hapus |Tambah part/);
+    const personalView = renderToStaticMarkup(React.createElement(DeckView, { ...deckProps, deck: { ...deckProps.deck, builtin: false } }));
+    assert.match(personalView, /aria-label="Edit deck"/);
+    assert.match(personalView, /aria-label="Hapus deck"/);
+    assert.match(personalView, /Tambah part/);
 
     const { default: Study } = await server.ssrLoadModule('/src/Study.jsx');
     const props = {

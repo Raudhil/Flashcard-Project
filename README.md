@@ -2,6 +2,16 @@
 
 Website flashcard berbahasa Indonesia menggunakan **JavaScript, React, Vite, dan Tailwind CSS v4**. Tampilan cream dengan kartu pastel, garis tegas, serta mode terang/gelap mengikuti referensi.
 
+## Materi bawaan untuk semua perangkat
+
+Website menyertakan deck **Mandarin — Materi 01–13**, berisi **13 part dan 236 kartu** dari file `json-mandarin/01.json` sampai `13.json`. Format materi ini: **front = hanzi, hint = arti Indonesia, back = pinyin**. Urutan part mengikuti nomor file; pertanyaan dalam sesi belajar tetap diacak.
+
+Materi diimpor langsung saat build, sehingga tersedia pada semua perangkat yang membuka hasil deployment Vercel tanpa perlu mengunggah ulang. Deck bawaan tersedia juga pada browser yang sudah memiliki data lama, tanpa menghapus deck pribadi maupun progresnya. Materi bawaan dapat dipelajari dan diekspor; edit/hapus hanya tersedia untuk deck pribadi.
+
+Untuk memperbarui materi bagi semua pengunjung, edit file di `json-mandarin`, push perubahan ke repository, lalu deploy ulang di Vercel. ID kartu bawaan ditentukan dari isi kartu agar progres tetap terkait dengan kartu yang sama jika urutannya berubah; kartu yang isinya berubah diperlakukan sebagai kartu baru.
+
+**Upload atau pembuatan deck melalui website tetap bersifat lokal.** Perubahan tersebut hanya tersedia pada browser yang dipakai, dan tidak mengubah materi bawaan yang dibagikan ke perangkat lain.
+
 ## Menjalankan
 
 Butuh Node.js 20.19+ atau 22.12+.
@@ -60,7 +70,7 @@ Warna: `pink`, `mint`, `purple`, `yellow`, `blue`. Maksimal 100 part per impor d
 
 ## Penyimpanan
 
-Deck, kartu, dan progres disimpan di `localStorage` browser, tanpa login atau backend. Data bertahan setelah refresh, tetapi **tidak tersinkron antarperangkat/browser** dan dapat hilang jika data situs dihapus. Ekspor JSON untuk cadangan. Mode gelap mengikuti perangkat saat pertama kali digunakan dan menyimpan pilihan selanjutnya. Font Google memiliki fallback lokal jika tidak terhubung ke internet.
+Materi bawaan dibaca dari paket website yang sama di semua perangkat. Deck pribadi, kartu yang diunggah melalui website, dan progres belajar disimpan di `localStorage` browser, tanpa login atau backend. Data pribadi bertahan setelah refresh, tetapi **tidak tersinkron antarperangkat/browser** dan dapat hilang jika data situs dihapus. Ekspor JSON untuk cadangan. Mode gelap mengikuti perangkat saat pertama kali digunakan dan menyimpan pilihan selanjutnya. Font Google memiliki fallback lokal jika tidak terhubung ke internet.
 
 ## Pintasan belajar
 
