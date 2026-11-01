@@ -36,6 +36,7 @@ export function seedDecks() {
       const occurrences = new Map();
       return {
         id,
+        builtin: true,
         name: `Part ${number}`,
         cards: cards.map(card => {
           const key = cardKey(card);
@@ -49,12 +50,22 @@ export function seedDecks() {
 }
 
 export function withBuiltinDecks(data) {
-  const builtins = seedDecks();
+  const builtins = seedDecks().map(deck => {
+    const saved = data.decks.find(item => item.id === deck.id);
+    const builtinPartIds = new Set(deck.parts.map(part => part.id));
+    const additions = (saved?.parts || []).filter(part => !part.builtin && !builtinPartIds.has(part.id));
+    return { ...deck, parts: [...deck.parts, ...additions] };
+  });
   const builtinIds = new Set(builtins.map(deck => deck.id));
   return { ...data, decks: [...builtins, ...data.decks.filter(deck => !deck.builtin && !builtinIds.has(deck.id))] };
 }
 
 export function localData(data) {
-  // Ship materials with the app; only personal decks and progress need local storage.
-  return { ...data, decks: data.decks.filter(deck => !deck.builtin) };
+  // Store personal additions inside their built-in deck, without copying bundled cards.
+  return {
+    ...data,
+    decks: data.decks
+      .map(deck => deck.builtin ? { ...deck, parts: deck.parts.filter(part => !part.builtin) } : deck)
+      .filter(deck => !deck.builtin || deck.parts.length > 0),
+  };
 }

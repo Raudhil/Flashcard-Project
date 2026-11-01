@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { localData, seedDecks, withBuiltinDecks } from '../src/data.js';
-import { createStudyQueue } from '../src/lib.js';
+import { createStudyQueue, exportDeck } from '../src/lib.js';
 
 test('bundles all 13 JSON files in numeric order with the exact 236 source cards', () => {
   const [deck] = seedDecks();
@@ -55,4 +55,38 @@ test('always uses deployed built-in content and saves only personal decks plus p
   assert.deepEqual(withBuiltinDecks(localData(merged)), merged);
   // Recognize the reserved ID even if an older saved copy lacks the flag.
   assert.equal(withBuiltinDecks({ decks: [{ id: builtin.id, parts: [] }], progress: {} }).decks.length, 1);
+});
+
+test('uploaded parts inside a built-in deck survive saves, refreshes and repeated merges', () => {
+  const [builtin] = seedDecks();
+  const added = { id: 'uploaded-part', name: 'Part tambahan', cards: [{ id: 'uploaded-card', front: '你好', hint: 'Halo', back: 'nǐ hǎo' }] };
+  const progress = { [builtin.parts[0].cards[0].id]: { mastered: true }, 'uploaded-card': { seen: true } };
+  const state = { decks: [{ ...builtin, parts: [...builtin.parts, added] }], progress };
+  const before = structuredClone(state);
+  const saved = localData(state);
+  assert.deepEqual(saved.decks[0].parts, [added]);
+  assert.deepEqual(saved.progress, progress);
+  const restored = withBuiltinDecks(JSON.parse(JSON.stringify(saved)));
+  assert.deepEqual(restored.decks[0].parts.slice(0, 13), builtin.parts);
+  assert.deepEqual(restored.decks[0].parts[13], added);
+  assert.deepEqual(restored.progress, progress);
+  assert.deepEqual(withBuiltinDecks(restored), restored);
+  assert.equal(exportDeck(restored.decks[0]).parts.length, 14);
+  assert.deepEqual(state, before);
+});
+
+test('editing or deleting an uploaded part preserves the 13 bundled parts', () => {
+  const [builtin] = seedDecks();
+  const added = { id: 'uploaded-part', name: 'Edited upload', cards: [{ id: 'uploaded-card', front: '再见', hint: 'Sampai jumpa', back: 'zài jiàn' }] };
+  const saved = {
+    decks: [{ ...builtin, parts: [{ ...builtin.parts[0], name: 'Attempted replacement', cards: [] }, added] }],
+    progress: {},
+  };
+  const restored = withBuiltinDecks(saved);
+  assert.deepEqual(restored.decks[0].parts.slice(0, 13), builtin.parts);
+  assert.deepEqual(restored.decks[0].parts[13], added);
+  restored.decks[0].parts = restored.decks[0].parts.filter(part => part.id !== added.id);
+  const afterDelete = withBuiltinDecks(localData(restored));
+  assert.deepEqual(afterDelete.decks[0], builtin);
+  assert.equal(afterDelete.decks[0].parts.some(part => part.id === added.id), false);
 });

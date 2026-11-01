@@ -35,7 +35,15 @@ test('home includes built-in materials for new and returning browsers, and study
     assert.match(builtinView, /Part 13/);
     assert.match(builtinView, /Ekspor deck/);
     assert.equal((builtinView.match(/>Belajar /g) || []).length, 13);
-    assert.doesNotMatch(builtinView, /aria-label="Edit |aria-label="Hapus |Tambah part/);
+    assert.doesNotMatch(builtinView, /aria-label="Edit |aria-label="Hapus /);
+    assert.match(builtinView, /Tambah part/);
+    const uploadedPart = { id: 'upload', name: 'Part upload saya', cards: [{ id: 'upload-card', front: '你好', hint: 'Halo', back: 'nǐ hǎo' }] };
+    const extendedView = renderToStaticMarkup(React.createElement(DeckView, { ...deckProps, deck: { ...deckProps.deck, parts: [...deckProps.deck.parts, uploadedPart] } }));
+    assert.match(extendedView, /Part upload saya/);
+    assert.match(extendedView, /Tambahan pribadi/);
+    assert.match(extendedView, /aria-label="Edit Part upload saya"/);
+    assert.match(extendedView, /aria-label="Hapus Part upload saya"/);
+    assert.doesNotMatch(extendedView, /aria-label="Edit Part 01"|aria-label="Hapus Part 01"/);
     const personalView = renderToStaticMarkup(React.createElement(DeckView, { ...deckProps, deck: { ...deckProps.deck, builtin: false } }));
     assert.match(personalView, /aria-label="Edit deck"/);
     assert.match(personalView, /aria-label="Hapus deck"/);

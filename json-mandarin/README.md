@@ -43,4 +43,4 @@ Hanzi dan isi kosakata dipertahankan sesuai sumber. Kapitalisasi pinyin dinormal
 
 Semua file sudah dimuat otomatis sebagai deck bawaan **Mandarin — Materi 01–13**, dengan part bernomor 01 sampai 13. Tidak perlu upload ulang. Setelah deploy ke Vercel, materi ini tersedia di semua perangkat; progres belajar tetap tersimpan di browser masing-masing.
 
-Untuk mengubah materi bawaan bagi semua pengunjung, edit file JSON yang sesuai, lalu build/deploy ulang website. Untuk membuat salinan pribadi, buka deck pribadi, pilih **Tambah part**, beri nama part, lalu unggah file JSON sesuai nomor. Salinan pribadi hanya tersimpan di browser yang digunakan.
+Untuk mengubah materi bawaan bagi semua pengunjung, edit file JSON yang sesuai, lalu build/deploy ulang website. Untuk menambahkan part melalui website, buka deck bawaan atau deck pribadi, pilih **Tambah part**, beri nama part, lalu unggah file JSON. Part tambahan hanya tersimpan di browser yang digunakan dan tidak menimpa 13 part bawaan. Ekspor deck akan menyertakan part tambahan untuk cadangan.

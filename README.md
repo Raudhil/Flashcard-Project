@@ -6,11 +6,11 @@ Website flashcard berbahasa Indonesia menggunakan **JavaScript, React, Vite, dan
 
 Website menyertakan deck **Mandarin — Materi 01–13**, berisi **13 part dan 236 kartu** dari file `json-mandarin/01.json` sampai `13.json`. Format materi ini: **front = hanzi, hint = arti Indonesia, back = pinyin**. Urutan part mengikuti nomor file; pertanyaan dalam sesi belajar tetap diacak.
 
-Materi diimpor langsung saat build, sehingga tersedia pada semua perangkat yang membuka hasil deployment Vercel tanpa perlu mengunggah ulang. Deck bawaan tersedia juga pada browser yang sudah memiliki data lama, tanpa menghapus deck pribadi maupun progresnya. Materi bawaan dapat dipelajari dan diekspor; edit/hapus hanya tersedia untuk deck pribadi.
+Materi diimpor langsung saat build, sehingga tersedia pada semua perangkat yang membuka hasil deployment Vercel tanpa perlu mengunggah ulang. Deck bawaan tersedia juga pada browser yang sudah memiliki data lama, tanpa menghapus deck pribadi maupun progresnya. **Tambah part dan upload JSON tetap tersedia di dalam deck bawaan.** Part yang ditambahkan disimpan di browser, dapat diedit/dihapus, dan tetap ada setelah refresh. Tiga belas part bawaan tetap tersedia untuk belajar dan tidak ditimpa oleh upload tambahan.
 
 Untuk memperbarui materi bagi semua pengunjung, edit file di `json-mandarin`, push perubahan ke repository, lalu deploy ulang di Vercel. ID kartu bawaan ditentukan dari isi kartu agar progres tetap terkait dengan kartu yang sama jika urutannya berubah; kartu yang isinya berubah diperlakukan sebagai kartu baru.
 
-**Upload atau pembuatan deck melalui website tetap bersifat lokal.** Perubahan tersebut hanya tersedia pada browser yang dipakai, dan tidak mengubah materi bawaan yang dibagikan ke perangkat lain.
+**Upload atau pembuatan deck melalui website tetap bersifat lokal**, termasuk part tambahan di dalam deck bawaan. Perubahan tersebut hanya tersedia pada browser yang dipakai, dan tidak mengubah materi bawaan yang dibagikan ke perangkat lain. Ekspor deck bawaan akan menyertakan seluruh part bawaan beserta part tambahan untuk cadangan atau pemindahan manual.
 
 ## Menjalankan
 

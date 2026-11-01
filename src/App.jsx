@@ -66,7 +66,7 @@ export default function App() {
   const part = deck?.parts.find(p => p.id === page.partId);
   const allCards = data.decks.flatMap(d => d.parts.flatMap(p => p.cards));
   const totalStats = stats(allCards, data.progress);
-  function updateDeck(next) { setData(old => ({ ...old, decks: old.decks.map(d => d.id === next.id && !d.builtin ? next : d) })); }
+  function updateDeck(next) { setData(old => withBuiltinDecks({ ...old, decks: old.decks.map(d => d.id === next.id ? next : d) })); }
   function goHome() { setPage({ view: 'home' }); }
   function deleteDeck(target) {
     if (target.builtin) return;
@@ -154,17 +154,17 @@ export function DeckView({ deck, progress, back, study, addPart, editPart, editD
       <Summary icon={Zap} value={`${s.percent}%`} label="Progres deck" color="yellow" />
     </section>
     <div className="section-heading">
-      <div><h2>Selangkah demi selangkah.</h2><p>{deck.builtin ? '13 part siap dipelajari. Pilih part dan mulai belajar.' : 'Pilih part untuk mulai belajar atau tambahkan kartu baru.'}</p></div>
-      {!deck.builtin && <button className="button primary" onClick={addPart}><Plus size={17} /> Tambah part</button>}
+      <div><h2>Selangkah demi selangkah.</h2><p>Pilih part untuk mulai belajar atau tambahkan kartu baru.</p></div>
+      <button className="button primary" onClick={addPart}><Plus size={17} /> Tambah part</button>
     </div>
     <div className="parts-list">{deck.parts.map((p, index) => {
       const ps = stats(p.cards, progress);
       return <article className="part-row" key={p.id}>
         <span className={`part-number color-${deck.color}`}>{String(index + 1).padStart(2, '0')}</span>
-        <div className="part-info"><h3>{p.name}</h3><span>{p.cards.length} kartu <span>·</span> {ps.mastered} dikuasai</span></div>
+        <div className="part-info"><h3>{p.name}</h3><span>{p.cards.length} kartu <span>·</span> {ps.mastered} dikuasai{deck.builtin && !p.builtin && <> <span>·</span> Tambahan pribadi</>}</span></div>
         <div className="part-progress"><span>{ps.percent}%</span><div className="progress-track"><span style={{ width: `${ps.percent}%` }} /></div></div>
         <div className="part-actions">
-          {!deck.builtin && <>
+          {!p.builtin && <>
             <button className="icon-button" aria-label={`Edit ${p.name}`} onClick={() => editPart(p)}><Pencil size={16} /></button>
             <button className="icon-button" aria-label={`Hapus ${p.name}`} onClick={() => deletePart(p)}><Trash2 size={16} /></button>
           </>}
@@ -172,7 +172,7 @@ export function DeckView({ deck, progress, back, study, addPart, editPart, editD
         </div>
       </article>;
     })}{!deck.parts.length && <div className="empty-state"><span className="empty-icon color-yellow"><Layers size={35} /></span><h2>Deck baru, kemungkinan baru.</h2><p>Tambahkan part pertamamu dengan mengimpor kartu dari JSON.</p><button className="button primary" onClick={addPart}><Plus size={17} /> Buat part pertama</button></div>}</div>
-    <div className="help-line"><FileJson size={16} /> {deck.builtin ? 'Materi bawaan sama di semua perangkat. Progres belajar dan deck pribadi tersimpan di browser masing-masing.' : 'Setiap part berisi kumpulan flashcard dari JSON. Susun berdasarkan topik, bab, atau tingkat kesulitan.'}</div>
+    <div className="help-line"><FileJson size={16} /> {deck.builtin ? 'Tetap bisa upload JSON lewat Tambah part. Materi bawaan tersedia di semua perangkat; part tambahan dan progres tersimpan di browser ini. Ekspor deck untuk mencadangkannya.' : 'Setiap part berisi kumpulan flashcard dari JSON. Susun berdasarkan topik, bab, atau tingkat kesulitan.'}</div>
   </div>;
 }
 
