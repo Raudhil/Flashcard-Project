@@ -1,0 +1,122 @@
+[
+  {
+    "front": "怎麼",
+    "hint": "bagaimana / dengan cara apa",
+    "back": "zěnme"
+  },
+  {
+    "front": "到",
+    "hint": "pergi ke / sampai",
+    "back": "dào"
+  },
+  {
+    "front": "飯店",
+    "hint": "hotel",
+    "back": "fàndiàn"
+  },
+  {
+    "front": "找",
+    "hint": "mencari",
+    "back": "zhǎo"
+  },
+  {
+    "front": "韓國",
+    "hint": "Korea Selatan",
+    "back": "hánguó"
+  },
+  {
+    "front": "等",
+    "hint": "menunggu",
+    "back": "děng"
+  },
+  {
+    "front": "坐",
+    "hint": "naik / menggunakan (kendaraan)",
+    "back": "zuò"
+  },
+  {
+    "front": "捷運 / 地鐵",
+    "hint": "MRT / kereta bawah tanah",
+    "back": "jiéyùn / dìtiě"
+  },
+  {
+    "front": "公共汽車 / 公車",
+    "hint": "bus",
+    "back": "gōnggòng qìchē / gōngchē"
+  },
+  {
+    "front": "車（子）/ 汽車",
+    "hint": "mobil / kendaraan",
+    "back": "chē(zi) / qìchē"
+  },
+  {
+    "front": "計程車",
+    "hint": "taksi",
+    "back": "jìchéngchē"
+  },
+  {
+    "front": "火車",
+    "hint": "kereta api",
+    "back": "huǒchē"
+  },
+  {
+    "front": "上車",
+    "hint": "naik kendaraan",
+    "back": "shàng chē"
+  },
+  {
+    "front": "下車",
+    "hint": "turun dari kendaraan",
+    "back": "xià chē"
+  },
+  {
+    "front": "遠",
+    "hint": "jauh",
+    "back": "yuǎn"
+  },
+  {
+    "front": "近",
+    "hint": "dekat",
+    "back": "jìn"
+  },
+  {
+    "front": "想",
+    "hint": "ingin / berpikir",
+    "back": "xiǎng"
+  },
+  {
+    "front": "從",
+    "hint": "dari",
+    "back": "cóng"
+  },
+  {
+    "front": "走路",
+    "hint": "berjalan kaki",
+    "back": "zǒulù"
+  },
+  {
+    "front": "走",
+    "hint": "berjalan / pergi",
+    "back": "zǒu"
+  },
+  {
+    "front": "先",
+    "hint": "terlebih dahulu",
+    "back": "xiān"
+  },
+  {
+    "front": "地圖",
+    "hint": "peta",
+    "back": "dìtú"
+  },
+  {
+    "front": "錶 / 手錶",
+    "hint": "jam tangan",
+    "back": "biǎo / shǒubiǎo"
+  },
+  {
+    "front": "了",
+    "hint": "sudah / penanda perubahan",
+    "back": "le"
+  }
+]

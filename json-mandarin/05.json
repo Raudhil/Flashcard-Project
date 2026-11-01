@@ -1,0 +1,52 @@
+[
+  {
+    "front": "夏天",
+    "hint": "musim panas",
+    "back": "xiàtiān"
+  },
+  {
+    "front": "春天",
+    "hint": "musim semi",
+    "back": "chūntiān"
+  },
+  {
+    "front": "秋天",
+    "hint": "musim gugur",
+    "back": "qiūtiān"
+  },
+  {
+    "front": "冬天",
+    "hint": "musim dingin",
+    "back": "dōngtiān"
+  },
+  {
+    "front": "店 / 商店",
+    "hint": "Toko",
+    "back": "diàn / shāngdiàn"
+  },
+  {
+    "front": "果汁",
+    "hint": "Jus",
+    "back": "guǒzhī"
+  },
+  {
+    "front": "牛奶",
+    "hint": "Susu",
+    "back": "niúnǎi"
+  },
+  {
+    "front": "有的",
+    "hint": "ada yang / beberapa",
+    "back": "yǒude"
+  },
+  {
+    "front": "每",
+    "hint": "Setiap",
+    "back": "měi"
+  },
+  {
+    "front": "天",
+    "hint": "hari",
+    "back": "tiān"
+  }
+]

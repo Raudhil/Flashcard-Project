@@ -1,0 +1,62 @@
+[
+  {
+    "front": "線",
+    "hint": "jalur / rute",
+    "back": "xiàn"
+  },
+  {
+    "front": "藍",
+    "hint": "biru",
+    "back": "lán"
+  },
+  {
+    "front": "藍色",
+    "hint": "warna biru",
+    "back": "lánsè"
+  },
+  {
+    "front": "機場 / 飛機場",
+    "hint": "bandara",
+    "back": "jīchǎng / fēijīchǎng"
+  },
+  {
+    "front": "開車",
+    "hint": "mengemudi / menyetir",
+    "back": "kāichē"
+  },
+  {
+    "front": "司機",
+    "hint": "sopir",
+    "back": "sījī"
+  },
+  {
+    "front": "車站",
+    "hint": "stasiun",
+    "back": "chēzhàn"
+  },
+  {
+    "front": "站",
+    "hint": "halte / stasiun",
+    "back": "zhàn"
+  },
+  {
+    "front": "飛機",
+    "hint": "pesawat",
+    "back": "fēijī"
+  },
+  {
+    "front": "架",
+    "hint": "buah / unit (kata satuan untuk pesawat)",
+    "back": "jià"
+  },
+  {
+    "front": "飛",
+    "hint": "terbang",
+    "back": "fēi"
+  },
+  {
+    "front": "起飛",
+    "hint": "lepas landas",
+    "back": "qǐfēi"
+  }
+]

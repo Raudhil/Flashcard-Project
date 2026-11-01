@@ -1,0 +1,97 @@
+[
+  {
+    "front": "打",
+    "hint": "bermain / memukul",
+    "back": "dǎ"
+  },
+  {
+    "front": "網球",
+    "hint": "tenis",
+    "back": "wǎngqiú"
+  },
+  {
+    "front": "籃球",
+    "hint": "bola basket",
+    "back": "lánqiú"
+  },
+  {
+    "front": "棒球",
+    "hint": "bisbol",
+    "back": "bàngqiú"
+  },
+  {
+    "front": "足球",
+    "hint": "sepak bola",
+    "back": "zúqiú"
+  },
+  {
+    "front": "踢",
+    "hint": "menendang",
+    "back": "tī"
+  },
+  {
+    "front": "海邊",
+    "hint": "tepi laut / pantai",
+    "back": "hǎibiān"
+  },
+  {
+    "front": "海",
+    "hint": "laut",
+    "back": "hǎi"
+  },
+  {
+    "front": "山",
+    "hint": "gunung",
+    "back": "shān"
+  },
+  {
+    "front": "風景",
+    "hint": "pemandangan",
+    "back": "fēngjǐng"
+  },
+  {
+    "front": "游泳",
+    "hint": "berenang",
+    "back": "yóuyǒng"
+  },
+  {
+    "front": "會",
+    "hint": "bisa / dapat",
+    "back": "huì"
+  },
+  {
+    "front": "得",
+    "hint": "dengan / penanda pelengkap",
+    "back": "de"
+  },
+  {
+    "front": "跑步",
+    "hint": "berlari / jogging",
+    "back": "pǎobù"
+  },
+  {
+    "front": "跑",
+    "hint": "berlari",
+    "back": "pǎo"
+  },
+  {
+    "front": "慢",
+    "hint": "lambat",
+    "back": "màn"
+  },
+  {
+    "front": "快",
+    "hint": "cepat",
+    "back": "kuài"
+  },
+  {
+    "front": "說",
+    "hint": "berbicara / mengatakan",
+    "back": "shuō"
+  },
+  {
+    "front": "說話",
+    "hint": "berbicara / ngomong",
+    "back": "shuōhuà"
+  }
+]

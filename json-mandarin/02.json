@@ -1,0 +1,42 @@
+[
+  {
+    "front": "請",
+    "hint": "mengundang; mentraktir",
+    "back": "qǐng"
+  },
+  {
+    "front": "玩",
+    "hint": "Bermain",
+    "back": "wán"
+  },
+  {
+    "front": "這些",
+    "hint": "ini (banyak/beberapa)",
+    "back": "zhèxiē"
+  },
+  {
+    "front": "那些",
+    "hint": "itu (banyak/beberapa)",
+    "back": "nàxiē"
+  },
+  {
+    "front": "點心",
+    "hint": "makanan ringan; snack",
+    "back": "diǎnxīn"
+  },
+  {
+    "front": "甜點",
+    "hint": "hidangan penutup; dessert",
+    "back": "tiándiǎn"
+  },
+  {
+    "front": "甜",
+    "hint": "manis",
+    "back": "tián"
+  },
+  {
+    "front": "開心",
+    "hint": "bahagia; senang",
+    "back": "kāixīn"
+  }
+]

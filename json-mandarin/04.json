@@ -1,0 +1,122 @@
+[
+  {
+    "front": "紅茶",
+    "hint": "teh hitam",
+    "back": "hóngchá"
+  },
+  {
+    "front": "綠茶",
+    "hint": "teh hijau",
+    "back": "lǜchá"
+  },
+  {
+    "front": "綠色",
+    "hint": "warna hijau",
+    "back": "lǜsè"
+  },
+  {
+    "front": "綠",
+    "hint": "hijau",
+    "back": "lǜ"
+  },
+  {
+    "front": "請",
+    "hint": "silakan / mohon",
+    "back": "qǐng"
+  },
+  {
+    "front": "給",
+    "hint": "memberi / memberikan",
+    "back": "gěi"
+  },
+  {
+    "front": "一共",
+    "hint": "total / semuanya",
+    "back": "yígòng"
+  },
+  {
+    "front": "多少",
+    "hint": "berapa banyak / berapa",
+    "back": "duōshǎo"
+  },
+  {
+    "front": "百",
+    "hint": "seratus",
+    "back": "bǎi"
+  },
+  {
+    "front": "千",
+    "hint": "seribu",
+    "back": "qiān"
+  },
+  {
+    "front": "萬",
+    "hint": "sepuluh ribu",
+    "back": "wàn"
+  },
+  {
+    "front": "零",
+    "hint": "nol",
+    "back": "líng"
+  },
+  {
+    "front": "找錢",
+    "hint": "uang kembalian",
+    "back": "zhǎo qián"
+  },
+  {
+    "front": "您",
+    "hint": "Anda (bentuk sopan)",
+    "back": "nín"
+  },
+  {
+    "front": "多",
+    "hint": "banyak / lebih",
+    "back": "duō"
+  },
+  {
+    "front": "點",
+    "hint": "titik / jam (時間)",
+    "back": "diǎn"
+  },
+  {
+    "front": "碗",
+    "hint": "mangkuk",
+    "back": "wǎn"
+  },
+  {
+    "front": "杯",
+    "hint": "gelas / cangkir (kata satuan)",
+    "back": "bēi"
+  },
+  {
+    "front": "杯子",
+    "hint": "gelas / cangkir",
+    "back": "bēizi"
+  },
+  {
+    "front": "瓶",
+    "hint": "botol (kata satuan)",
+    "back": "píng"
+  },
+  {
+    "front": "瓶子",
+    "hint": "botol",
+    "back": "píngzi"
+  },
+  {
+    "front": "女",
+    "hint": "perempuan",
+    "back": "nǚ"
+  },
+  {
+    "front": "男",
+    "hint": "laki-laki",
+    "back": "nán"
+  },
+  {
+    "front": "位",
+    "hint": "orang (kata satuan yang sopan)",
+    "back": "wèi"
+  }
+]

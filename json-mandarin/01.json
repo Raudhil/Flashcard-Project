@@ -1,0 +1,117 @@
+[
+  {
+    "front": "便宜",
+    "hint": "Murah",
+    "back": "piányí"
+  },
+  {
+    "front": "貴",
+    "hint": "Mahal",
+    "back": "guì"
+  },
+  {
+    "front": "顏色",
+    "hint": "Warna",
+    "back": "yánsè"
+  },
+  {
+    "front": "紅色（紅）",
+    "hint": "warna merah (merah)",
+    "back": "hóngsè (hóng)"
+  },
+  {
+    "front": "白色",
+    "hint": "warna putih",
+    "back": "báisè"
+  },
+  {
+    "front": "白",
+    "hint": "Putih",
+    "back": "bái"
+  },
+  {
+    "front": "都",
+    "hint": "semua; keduanya",
+    "back": "dōu"
+  },
+  {
+    "front": "好看",
+    "hint": "bagus; cantik; tampan",
+    "back": "hǎokàn"
+  },
+  {
+    "front": "常",
+    "hint": "Sering",
+    "back": "cháng"
+  },
+  {
+    "front": "穿",
+    "hint": "Memakai",
+    "back": "chuān"
+  },
+  {
+    "front": "衣服",
+    "hint": "Pakaian",
+    "back": "yīfu"
+  },
+  {
+    "front": "件",
+    "hint": "kata pengukur untuk pakaian",
+    "back": "jiàn"
+  },
+  {
+    "front": "這",
+    "hint": "ini",
+    "back": "zhè"
+  },
+  {
+    "front": "那",
+    "hint": "Itu",
+    "back": "nà"
+  },
+  {
+    "front": "種",
+    "hint": "jenis; macam",
+    "back": "zhǒng"
+  },
+  {
+    "front": "鉛筆",
+    "hint": "Pensil",
+    "back": "qiānbǐ"
+  },
+  {
+    "front": "筆",
+    "hint": "Pena",
+    "back": "bǐ"
+  },
+  {
+    "front": "怎麼樣",
+    "hint": "bagaimana / bagaimana pendapatmu",
+    "back": "zěnmeyàng"
+  },
+  {
+    "front": "東西",
+    "hint": "barang; benda",
+    "back": "dōngxi"
+  },
+  {
+    "front": "支 [枝]",
+    "hint": "batang (kata ukur untuk pena/pensil)",
+    "back": "zhī"
+  },
+  {
+    "front": "塊",
+    "hint": "potong; kata ukur untuk uang (sejumlah uang)",
+    "back": "kuài"
+  },
+  {
+    "front": "錢",
+    "hint": "Uang",
+    "back": "qián"
+  },
+  {
+    "front": "元",
+    "hint": "unit uang (mata uang resmi)",
+    "back": "yuán"
+  }
+]

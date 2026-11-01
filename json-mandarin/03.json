@@ -1,0 +1,122 @@
+[
+  {
+    "front": "餐廳",
+    "hint": "restoran",
+    "back": "cāntīng"
+  },
+  {
+    "front": "飯館",
+    "hint": "restoran / rumah makan",
+    "back": "fànguǎn"
+  },
+  {
+    "front": "家",
+    "hint": "rumah / keluarga",
+    "back": "jiā"
+  },
+  {
+    "front": "太",
+    "hint": "terlalu / sangat",
+    "back": "tài"
+  },
+  {
+    "front": "多",
+    "hint": "banyak",
+    "back": "duō"
+  },
+  {
+    "front": "少",
+    "hint": "sedikit",
+    "back": "shǎo"
+  },
+  {
+    "front": "麵",
+    "hint": "mi / mie",
+    "back": "miàn"
+  },
+  {
+    "front": "好吃",
+    "hint": "enak (untuk makanan)",
+    "back": "hǎochī"
+  },
+  {
+    "front": "好喝",
+    "hint": "enak (untuk minuman)",
+    "back": "hǎohē"
+  },
+  {
+    "front": "了",
+    "hint": "sudah / penanda perubahan keadaan",
+    "back": "le"
+  },
+  {
+    "front": "最",
+    "hint": "paling",
+    "back": "zuì"
+  },
+  {
+    "front": "賣",
+    "hint": "menjual",
+    "back": "mài"
+  },
+  {
+    "front": "咖啡",
+    "hint": "kopi",
+    "back": "kāfēi"
+  },
+  {
+    "front": "還是",
+    "hint": "atau (untuk pertanyaan pilihan)",
+    "back": "háishì"
+  },
+  {
+    "front": "天氣",
+    "hint": "cuaca",
+    "back": "tiānqì"
+  },
+  {
+    "front": "好",
+    "hint": "baik / bagus",
+    "back": "hǎo"
+  },
+  {
+    "front": "很",
+    "hint": "sangat",
+    "back": "hěn"
+  },
+  {
+    "front": "熱",
+    "hint": "panas",
+    "back": "rè"
+  },
+  {
+    "front": "冷",
+    "hint": "dingin",
+    "back": "lěng"
+  },
+  {
+    "front": "飲料",
+    "hint": "minuman",
+    "back": "yǐnliào"
+  },
+  {
+    "front": "也",
+    "hint": "juga",
+    "back": "yě"
+  },
+  {
+    "front": "餓",
+    "hint": "lapar",
+    "back": "è"
+  },
+  {
+    "front": "渴",
+    "hint": "haus",
+    "back": "kě"
+  },
+  {
+    "front": "（一）點（兒）",
+    "hint": "sedikit / agak",
+    "back": "(yì) diǎn (r)"
+  }
+]

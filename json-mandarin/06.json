@@ -1,0 +1,82 @@
+[
+  {
+    "front": "冰淇淋",
+    "hint": "es krim",
+    "back": "bīngqílín"
+  },
+  {
+    "front": "巧克力",
+    "hint": "cokelat",
+    "back": "qiǎokèlì"
+  },
+  {
+    "front": "半",
+    "hint": "setengah",
+    "back": "bàn"
+  },
+  {
+    "front": "吧",
+    "hint": "partikel akhir (saran/usulan)",
+    "back": "ba"
+  },
+  {
+    "front": "有空",
+    "hint": "punya waktu luang / ada waktu",
+    "back": "yǒu kòng"
+  },
+  {
+    "front": "沒（有）空",
+    "hint": "tidak punya waktu luang / tidak ada waktu",
+    "back": "méi (yǒu) kòng"
+  },
+  {
+    "front": "錢包",
+    "hint": "dompet",
+    "back": "qiánbāo"
+  },
+  {
+    "front": "在",
+    "hint": "berada; di",
+    "back": "zài"
+  },
+  {
+    "front": "哪裡 / 哪兒",
+    "hint": "di mana",
+    "back": "nǎlǐ / nǎr"
+  },
+  {
+    "front": "聽",
+    "hint": "mendengar",
+    "back": "tīng"
+  },
+  {
+    "front": "音樂",
+    "hint": "musik",
+    "back": "yīnyuè"
+  },
+  {
+    "front": "下午茶",
+    "hint": "teh sore (afternoon tea)",
+    "back": "xiàwǔchá"
+  },
+  {
+    "front": "不錯",
+    "hint": "lumayan; tidak jelek",
+    "back": "bùcuò"
+  },
+  {
+    "front": "咖啡廳",
+    "hint": "kafe",
+    "back": "kāfēitīng"
+  },
+  {
+    "front": "那裡 / 那兒",
+    "hint": "di sana",
+    "back": "nàlǐ / nàr"
+  },
+  {
+    "front": "這裡 / 這兒",
+    "hint": "di sini",
+    "back": "zhèlǐ / zhèr"
+  }
+]
